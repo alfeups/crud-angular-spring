@@ -1,6 +1,6 @@
 import { CoursesService } from './../services/courses.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -23,7 +23,9 @@ export class CourseFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void{}
+  ngOnInit(): void {
+    this.form.value.name = 'Alfeu';
+  }
 
   onSubmit() {
     this.service.save(this.form.value)

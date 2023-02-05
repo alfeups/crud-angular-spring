@@ -17,10 +17,8 @@ export class CoursesComponent implements OnInit {
 
   //courses: Course[] = [];
   courses$: Observable <Course[]>;
-  displayedColumns = ['name', 'category', 'actions'];
 
   //coursesService: CoursesService;
-
   constructor(
     private coursesService: CoursesService,
     public dialog: MatDialog,
@@ -43,12 +41,8 @@ export class CoursesComponent implements OnInit {
       });
    }
 
-
-
-
   ngOnInit(): void {
     //this.courses = this.coursesService.list(); could be here as well
-
   }
 
   onAdd(){

@@ -1,4 +1,4 @@
-import { CoursesService } from './../services/courses.service';
+import { CoursesService } from '../../../services/courses.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';

@@ -24,8 +24,13 @@ export class CoursesService {
     );
   }
 
-
   save(course: Course) {
     return this.httpClient.post<Course>(this.API, course).pipe(first()); //pipe() is optional
   }
+
+  getById(id: string){
+    return this.httpClient.get<Course>(`${this.API}/${id}`);
+  }
+
+
 }

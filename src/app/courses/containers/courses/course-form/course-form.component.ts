@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { Course } from 'src/app/courses/model/course';
 
 @Component({
   selector: 'app-course-form',
@@ -11,25 +13,29 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CourseFormComponent implements OnInit {
 
-  form: FormGroup;
+  form = this.formBuilder.group({
+      _id: [''],
+      name: [''],
+      category: ['']
+    });
 
   constructor(private formBuilder: FormBuilder,
     private service: CoursesService,
     private snackBar: MatSnackBar,
-    private location: Location){
-    this.form = this.formBuilder.group({
-      name: [null],
-      category: [null]
-    });
+    private location: Location,
+    private route: ActivatedRoute){
+
   }
 
   ngOnInit(): void {
-    this.form.value.name = 'Alfeu';
+    const course: Course = this.route.snapshot.data['course'];
+    this.form.setValue({_id: course._id, name: course.name, category: course.category});
+    console.log(course);
   }
 
   onSubmit() {
     this.service.save(this.form.value)
-    .subscribe(result => this.onSuccess(), error => this.onError());
+      .subscribe(result => this.onSuccess(), error => this.onError());
   }
 
   onCancel() {

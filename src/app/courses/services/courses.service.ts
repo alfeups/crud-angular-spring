@@ -24,7 +24,7 @@ export class CoursesService {
     );
   }
 
-  save(record: Partial<Course>) {
+  save(record: Partial<Course> ) {
     console.log(record);
     if(record._id){
       return this.update(record);
